@@ -70,7 +70,7 @@ The following steps can be done ahead of time to save time:
       document.getElementById('app')
     );
     ```
-    
+
 - Start development server
 
     ```bash
@@ -200,6 +200,7 @@ We need to trigger this method once the component is loaded, so let's bring back
     }
     ```
 
+1. Show devtools where time is updating
 1. Update `render()` method to display the state variable
 
     ```diff
@@ -212,4 +213,3 @@ We need to trigger this method once the component is loaded, so let's bring back
       );
     }
     ```
-    

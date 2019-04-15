@@ -140,7 +140,7 @@ const HelloWorld = (props) => {
 
 - mounting events
 - updating events
-- unmounting event
+- unmounting events
 
 ^ React provides a way for you to control and customize a component's behavior based on its lifecycle events. These events fall into the following categories:
 
@@ -148,7 +148,7 @@ const HelloWorld = (props) => {
 
 ^ updating events: happen when a React element is updated as a result of new values of its properties or state
 
-^ unmounting event: happen when a React element is detached from the DOM
+^ unmounting events: happen when a React element is detached from the DOM
 
 ---
 
