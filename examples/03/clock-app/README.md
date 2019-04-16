@@ -19,13 +19,13 @@ The following steps can be done ahead of time to save time:
 
 1. `.vscode/settings.json`
 
-	```json
+  ```json
     {
       "files.associations": {
         "**/*.js": "javascriptreact"
       }
     }
-	```
+  ```
 
 1. Update `package.json` script
 
@@ -96,6 +96,37 @@ The following steps can be done ahead of time to save time:
     }
     ```
 
+1. Create `components/Header.js` stateless component
+
+    ```javascript
+    import React from 'react';
+
+    const Header = () => (
+      <header>
+        <h1>Header</h1>
+      </header>
+    );
+
+    export default Header;
+    ```
+
+1. Add `Header` component to `./src/index.js`
+
+    ```diff
+    ```javascript
+    import React from 'react';
+    import { render } from 'react-dom';
+    + import Header from './components/Header';
+
+    render(
+      <div>
+    -   <h1>Hello Clock</h1>
+    +   <Header />
+      </div>,
+      document.getElementById('app')
+    );
+    ```
+
 1. Create `components/Clock.js`
 
     ```javascript
@@ -119,15 +150,16 @@ The following steps can be done ahead of time to save time:
     ```diff
     import React from 'react';
     import { render } from 'react-dom';
+    import Header from './components/Header';
     + import './css/screen.css';
     + import Clock from './components/Clock';
 
     render(
     -  <div>
-    -   <h1>Hello Clock</h1>
-    - </div>,
     + <React.Fragment>
-    +  <Clock />
+        <Header />
+    +   <Clock />
+    - </div>,
     + </React.Fragment>,
       document.getElementById('app')
     );

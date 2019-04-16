@@ -1,10 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Header from './components/Header';
 import Clock from './components/Clock';
 
 render(
-  <React.Fragment>
+  <>
+    <Header />
     <Clock />
-  </React.Fragment>,
+  </>,
   document.getElementById('app')
 );
