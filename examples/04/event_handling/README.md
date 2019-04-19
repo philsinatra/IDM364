@@ -75,7 +75,7 @@ Anyone else tired of doing this over and over? I know I am.
     );
     ```
 
-1. Create `src/components/Button.js` as a stateless component
+1. Create `src/components/Button.js` component
 
     ```javascript
     import React, { Component } from 'react';
@@ -306,6 +306,7 @@ Let's expand our example so that the button loads some data into our application
         </>
       );
     }
+    ```
 
 1. Update `./src/components/Button.js` to call this new function when the button is clicked.
 
@@ -446,7 +447,7 @@ So next it may be tempting to create a bunch of _Sign_ component references:
   ...
 ```
 
-Instead, we'll use some type of a loop to iterate over each of the signs from our signs data. The first thing you should notice is that our fish data is currently an object, which isn't exactly perfect since we're going to loop over this data using a `map` or `forEach` function which both work with arrays, not objects.
+Instead, we'll use some type of a loop to iterate over each of the signs from our signs data. The first thing you should notice is that our sign data is currently an object, which isn't exactly perfect since we're going to loop over this data using a `map` or `forEach` function which both work with arrays, not objects.
 
 We'll need to convert the data, or access each object key as an array of data. And we can do that with `Object.keys`
 
@@ -470,6 +471,7 @@ We'll need to convert the data, or access each object key as an array of data. A
     +  <li key={key}>{key}</li>
      ))}
     </ul>
+    ```
 
 1. Update the function to send all of the sign data to the _Sign_ component
 

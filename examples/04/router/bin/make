@@ -2,9 +2,9 @@
 
 set -e
 
-npx create-react-app event_handling
+npx create-react-app router
 
-cd event_handling
+cd router
 
 echo "🚧 Cleaning unnecessary files..."
 rm -rf .git
@@ -20,7 +20,7 @@ echo '{ "files.associations": { "**/*.js": "javascriptreact" } }' > .vscode/sett
 echo "👍 Done building workspace settings."
 
 echo "🏗️ Finishing up..."
-echo "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\"> <title>Event Handling</title> </head> <body> <noscript>You need JavaScript to run this application.</noscript> <div id=\"app\"></div> </body> </html>" > public/index.html
+echo "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"> <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\"> <title>Routing</title> </head> <body> <noscript>You need JavaScript to run this application.</noscript> <div id=\"app\"></div> </body> </html>" > public/index.html
 echo "🍻 Done."
 echo "Opening project in editor..."
 
