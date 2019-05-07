@@ -43,6 +43,7 @@ Thumbs.db
 *.svg
 build
 dist
+exercises/**/*.jpg
 graphics
 node_modules
 
