@@ -1,4 +1,4 @@
-# React Router
+# PropTypes
 
 ## Project Setup
 
