@@ -147,4 +147,4 @@ ReactDOM.render(
 
 ## References
 
-[^1]: Mardan, Azat, and John Sonmez. React Quickly Painless Web Apps with React, JSX, Redux, and GraphQL. Manning, 2016. pages 153, 155, 162, 166, 180-183, 188-189, 194, 202-203, 208-209
+- [^1]: Mardan, Azat, and John Sonmez. React Quickly Painless Web Apps with React, JSX, Redux, and GraphQL. Manning, 2016. pages 153, 155, 162, 166, 180-183, 188-189, 194, 202-203, 208-209

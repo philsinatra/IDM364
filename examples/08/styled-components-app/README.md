@@ -38,15 +38,9 @@ We'll work with the default app content for this example. Let's start by creatin
 - `./src/Button.js`
 
 ```javascript
-import React, { Component } from 'react';
+import React from 'react';
 
-class Button extends Component {
-  render() {
-    return (
-      <button>Hello Button</button>
-    );
-  }
-}
+const Button = () => <button>Hello Button</button>;
 
 export default Button;
 ```
@@ -54,34 +48,30 @@ export default Button;
 And then we'll import that component into our `./src/App.js`
 
 ```diff
-import React, { Component } from 'react';
+import React from 'react';
 + import Button from './Button';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+const App = () => (
+  <div className="App">
+    <header className="App-header">
+      <img src={logo} className="App-logo" alt="logo" />
 -         <p>
 -           Edit <code>src/App.js</code> and save to reload.
 -         </p>
 +         <Button />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+      <a
+        className="App-link"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Learn React
+      </a>
+    </header>
+  </div>
+);
 
 export default App;
 ```
@@ -95,16 +85,12 @@ npm start
 Normally if we wanted to add styles to the button, we would add a class or two to the element, and the appropriate styles would be applied from our CSS file. This still works fine.
 
 ```diff
-class Button extends Component {
-  render() {
-    return (
--     <button>Hello Button</button>
-+     <button className="button button__large button__large-red">
-+       Hello Button
-+     </button>
-    );
-  }
-}
+const Button = () => (
+-  <button>Hello Button</button>
++  <button className="button button__large button__large-red">
++    Hello Button
++  </button>
+);
 ```
 
 With styled components, we're actually going to replace the element itself with a custom component that has the styles attached to it. To begin, let's import _styled-components_ in our `./src/Button.js` _Button_ component.
@@ -114,7 +100,7 @@ npm install --save styled-components
 ```
 
 ```diff
-import React, { Component } from 'react';
+import React from 'react';
 + import styled from 'styled-components';
 ```
 
@@ -132,16 +118,12 @@ We can put all of our styles in here. Instead of it being a function and passing
 Then we replace the original _button_ element with the new custom component _MyButton_.
 
 ```diff
-class Button extends Component {
-  render() {
-    return (
--     <button className="button button__large button__large-red">
--       Hello Button
--     </button>
-+     <MyButton>Hello Button</MyButton>
-    );
-  }
-}
+const Button = () => (
+-  <button className="button button__large button__large-red">
+-    Hello Button
+-  </button>
++  <MyButton>Hello Button</MyButton>
+);
 
 export default Button;
 ```
@@ -157,16 +139,12 @@ const MyButton = styled.button`
 + font-size: 100%;
 `;
 
-class Button extends Component {
-  render() {
-    return (
--     <MyButton>Hello Button</MyButton>
-+     <MyButton>
-+       Hello Button <span>💩</span>
-+     </MyButton>
-    );
-  }
-}
+const Button = () => (
+-  <MyButton>Hello Button</MyButton>
++  <MyButton>
++    Hello Button <span>💩</span>
++  </MyButton>
+);
 ```
 
 We want the emoji to be larger, so we could setup another style variable.
@@ -176,16 +154,12 @@ We want the emoji to be larger, so we could setup another style variable.
 +  font-size: 200%;
 + `;
 
-class Button extends Component {
-  render() {
-    return (
-      <MyButton>
--       Hello Button <span>💩</span>
-+       Hello Button <MyEmoji>💩</MyEmoji>
-      </MyButton>
-    );
-  }
-}
+const Button = () => (
+  <MyButton>
+-   Hello Button <span>💩</span>
++   Hello Button <MyEmoji>💩</MyEmoji>
+  </MyButton>
+);
 ```
 
 This could get our of control quickly, and since we're only using _MyEmoji_ inside of _MyButton_ and not anywhere else where it lives on its own, we can nest the styles in our _MyButton_ styles.
@@ -204,16 +178,12 @@ const MyButton = styled.button`
 -  font-size: 200%;
 - `;
 
-class Button extends Component {
-  render() {
-    return (
-      <MyButton>
--        Hello Button <MyEmoji>💩</MyEmoji>
-+        Hello Button <span>💩</span>
-      </MyButton>
-    );
-  }
-}
+const Button = () => (
+  <MyButton>
+-    Hello Button <MyEmoji>💩</MyEmoji>
++    Hello Button <span>💩</span>
+  </MyButton>
+);
 ```
 
 Tools like SASS and Stylus let you nest your styles this way, so if you're familiar with CSS processors you should feel right at home with this technique. This also makes the code easier to understand. There's no need to give the _span_ a class and add additional bloat to the styles. We only have to be as specific as we need to be.
@@ -279,7 +249,7 @@ Now we can create multiple instances of our button component and include the _hu
 + </>
 ```
 
-You can even pass values into the function. Really nice flexibilitiy here.
+You can even pass values into the function. Really nice flexibility here.
 
 ```javascript
 <MyButton huge="100">
@@ -290,35 +260,31 @@ One of the things that is argued over with this technique is the fact that all o
 Let's clean up the content in our app a bit, starting with the `./src/App.js` _App_ component.
 
 ```diff
-import React, { Component } from 'react';
+import React from 'react';
 import Button from './Button';
 - import logo from './logo.svg';
 - import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-+       <Button />
--       <header className="App-header">
--         <img src={logo} className="App-logo" alt="logo" />
--         {/* <p>
--           Edit <code>src/App.js</code> and save to reload.
--         </p> */}
--         <Button />
--         <a
--           className="App-link"
--           href="https://reactjs.org"
--           target="_blank"
--           rel="noopener noreferrer"
--         >
--           Learn React
--         </a>
--       </header>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div className="App">
++    <Button />
+-    <header className="App-header">
+-      <img src={logo} className="App-logo" alt="logo" />
+-      {/* <p>
+-        Edit <code>src/App.js</code> and save to reload.
+-      </p> */}
+-      <Button />
+-      <a
+-        className="App-link"
+-        href="https://reactjs.org"
+-        target="_blank"
+-        rel="noopener noreferrer"
+-      >
+-        Learn React
+-      </a>
+-    </header>
+  </div>
+);
 
 export default App;
 ```
@@ -336,26 +302,20 @@ import * as serviceWorker from './serviceWorker';
 And we'll get rid of the extra `./src/Button.js` _Button_ instance.
 
 ```diff
-class Button extends Component {
-  render() {
-    return (
-      <>
-        <MyButton huge>
-          Hello Button{' '}
-          <span role="img" aria-label="poop">
-            💩
-          </span>
-        </MyButton>
+const Button = () => (
+  <MyButton huge>
+    Hello Button
+    <span role="img" aria-label="poop">
+      💩
+    </span>
+  </MyButton>
+);
 -       <MyButton>
 -         Hello Button{' '}
 -         <span role="img" aria-label="poop">
 -           💩
 -         </span>
 -       </MyButton>
-      </>
-    );
-  }
-}
 ```
 
 Next, let's talk about organizing styled components. So far, we're putting the styles right in the JavaScript file where we're using the styles, and that's fine if the styles we're writing are only going to be used for that component.
@@ -369,7 +329,7 @@ You can make a folder in your _components_ folder, something like _styles_ and p
 To get started, let's look at our `./src/App.js` _App_ component and replace the generic _div_ with more of a styled page container.
 
 ```diff
-import React, { Component } from 'react';
+import React from 'react';
 import Button from './Button';
 + import styled from 'styled-components';
 
@@ -378,22 +338,16 @@ import Button from './Button';
 +  color: #111;
 + `;
 
-class App extends Component {
-  render() {
-    return (
--     <div className="App">
-+     <StyledPage className="App">
-+       <p>
-+         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis
-+         esse exercitationem aperiam voluptatum libero earum dolorem officia
-+         cumque rem recusandae!
-+       </p>
-        <Button />
--     </div>
-+     </StyledPage>
-    );
-  }
-}
+const App = () => (
+-  <div className="App">
++  <StyledPage className="App">
++    <p>
++      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis esse exercitationem aperiam voluptatum libero earum dolorem officia cumque rem recusandae!
++    </p>
+    <Button />
+-    </div>
++  </StyledPage>
+);
 ```
 
 Let's add a container to handle centering and maintaining the max width of our content.
@@ -411,22 +365,16 @@ const StyledPage = styled.div`
 +   box-shadow: box-shadow: 0 12px 24px 0 rgba(0,0,0,.09);
 + `;
 
-class App extends Component {
-  render() {
-    return (
-      <StyledPage className="App">
-+       <Inner>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis
-            esse exercitationem aperiam voluptatum libero earum dolorem officia
-            cumque rem recusandae!
-          </p>
-          <Button />
-+       </Inner>
-      </StyledPage>
-    );
-  }
-}
+const App = () => (
+  <StyledPage className="App">
++   <Inner>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis esse exercitationem aperiam voluptatum libero earum dolorem officia cumque rem recusandae!
+      </p>
+      <Button />
++   </Inner>
+  </StyledPage>
+);
 ```
 
 Next, let's see how we can take these hard coded values we're using for our widths and colors, and put them into a theme.
@@ -462,9 +410,7 @@ return (
     <StyledPage className="App">
       <Inner>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          Reiciendis esse exercitationem aperiam voluptatum libero earum
-          dolorem officia cumque rem recusandae!
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis esse exercitationem aperiam voluptatum libero earum dolorem officia cumque rem recusandae!
         </p>
         <Button />
       </Inner>
@@ -515,10 +461,10 @@ export default Header;
 Now we'll add the _Header_ to our `./src/App.js` _App_ component.
 
 ```diff
-import React, { Component } from 'react';
+import React from 'react';
+import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 import Button from './Button';
 + import Header from './Header';
-import styled, { ThemeProvider, injectGlobal } from 'styled-components';
 
 ...
 
@@ -637,11 +583,11 @@ It's a little odd how we do this. We're going to use the _createGlobalStyle_ API
 Let's go to our `./src/App.js` _App_ component and create a _createGlobalStyle_ variable.
 
 ```diff
-import React, { Component } from 'react';
-import Button from './Button';
-import Header from './Header';
+import React from 'react';
 - import styled, { ThemeProvider } from 'styled-components';
 + import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import Button from './Button';
+import Header from './Header';
 
 const theme = {
   red: '#ff0000',
@@ -683,9 +629,7 @@ const Inner = styled.div`
   padding: 2rem;
 `;
 
-class App extends Component {
-  render() {
-    return (
+const App = () => (
 +     <>
 +       <GlobalStyle />
         <ThemeProvider theme={theme}>
@@ -693,9 +637,7 @@ class App extends Component {
             <Inner>
               <Header />
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Reiciendis esse exercitationem aperiam voluptatum libero earum
-                dolorem officia cumque rem recusandae!
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis esse exercitationem aperiam voluptatum libero earum dolorem officia cumque rem recusandae!
               </p>
               <Button />
             </Inner>
@@ -703,8 +645,6 @@ class App extends Component {
         </ThemeProvider>
 +     </>
     );
-  }
-}
 
 export default App;
 ```
@@ -782,7 +722,7 @@ export default MyButton;
 Then we'll clean up `./src/Button.js` our _Button_ compontent.
 
 ```diff
-import React, { Component } from 'react';
+import React from 'react';
 - import styled from 'styled-components';
 + import MyButton from './styles/ButtonStyles';
 
@@ -799,20 +739,14 @@ import React, { Component } from 'react';
 -   }
 - `;
 
-class Button extends Component {
-  render() {
-    return (
-      <>
-        <MyButton huge>
-          Hello Button{' '}
-          <span role="img" aria-label="poop">
-            💩
-          </span>
-        </MyButton>
-      </>
-    );
-  }
-}
+const Button = () => (
+  <MyButton huge>
+    Hello Button
+    <span role="img" aria-label="poop">
+      💩
+    </span>
+  </MyButton>
+);
 
 export default Button;
 ```

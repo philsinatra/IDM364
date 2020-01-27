@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hello World</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
+    ></script>
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title>Hello World</title>
-	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-</head>
+  <body>
+    <div id="content"></div>
+    <script>
+      /**
+       * 1. Build the class skeleton first with an empty render() method.
+       * 2. Build the ReactDOM.render() method and guts
+       * 3. Return to the class and fill in the render() method
+       */
 
-<body>
-	<div id="content"></div>
-	<script>
-	/**
-	 * 1. Build the class skeleton first with an empty render() method.
-	 * 2. Build the ReactDOM.render() method and guts
-	 * 3. Return to the class and fill in the render() method
-	 */
+      class HelloWorld extends React.Component {
+        render() {
+          return React.createElement(
+            'h1',
+            this.props,
+            `Hello ${this.props.frameworkName} world!`
+          );
+        }
+      }
 
-	class HelloWorld extends React.Component {
-		render() {
-			return React.createElement(
-				'h1',
-				this.props,
-				`Hello ${this.props.frameworkName} world!`
-			)
-		}
-	}
-
-	ReactDOM.render(
-		React.createElement(
-			'div',
-			null,
-			React.createElement(HelloWorld, {
-				id: 'ember',
-				frameworkName: 'Ember.js',
-				title: 'A framework for create ambitious web applications.'
-			}),
-			React.createElement(HelloWorld, {
-				id: 'backbone',
-				frameworkName: 'Backbone.js',
-				title: 'Web app structure from backbone.js'
-			}),
-			React.createElement(HelloWorld, {
-				id: 'angular',
-				frameworkName: 'Angular.js',
-				title: 'JavaScript MVN Framework.'
-			})
-		),
-		document.getElementById('content')
-	);
-
-	</script>
-</body>
-
+      ReactDOM.render(
+        React.createElement(
+          'div',
+          null,
+          React.createElement(HelloWorld, {
+            id: 'ember',
+            frameworkName: 'Ember.js',
+            title: 'A framework for create ambitious web applications.'
+          }),
+          React.createElement(HelloWorld, {
+            id: 'backbone',
+            frameworkName: 'Backbone.js',
+            title: 'Web app structure from backbone.js'
+          }),
+          React.createElement(HelloWorld, {
+            id: 'angular',
+            frameworkName: 'Angular.js',
+            title: 'JavaScript MVN Framework.'
+          })
+        ),
+        document.getElementById('content')
+      );
+    </script>
+  </body>
 </html>

@@ -1,0 +1,36 @@
+:root {
+	box-sizing: border-box;
+	font-size: 100%;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	background-color: lightgray;
+	font: 100%/1.5 sans-serif;
+}
+
+.signs {
+	background-color: white;
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(4, 1fr);
+	line-height: 1.2;
+	list-style: none;
+	margin: 0 auto;
+	max-width: 56.25rem;
+	padding: 1rem;
+}
+
+.signs h2 {
+	text-transform: uppercase;
+}
+
+.signs li img {
+	max-height: 12.5rem;
+	max-width: 12.5rem;
+}

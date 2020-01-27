@@ -70,6 +70,65 @@ theme: Dark Mode
 
 ---
 
+## Using Hooks
+
+^ Hooks is a feature that was introduced in React version 16.7 that has changed how we write React applications. Hooks allow function components to have state and respond to life cycle methods, which make class based components obsolete.
+
+---
+
+### `useState`
+
+```javascript
+import { useState } from 'react';
+
+const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  )
+}
+```
+
+^ Using the `useState()` API, you can create a new state variable and have a way to alter it. `useState()` accepts the initial value of the state item and returns an array containing the state variable, and the function you call to alter the state. Since it returns an array we use array destructuring to access each individual item.
+
+^ You can add add as many `useState()` calls as you want, to create as many state variables as you want.
+
+^ [1] Flavio Copes _The React Handbook_ pg. 178
+
+---
+
+### Accessing Lifecycle Hooks
+
+#### Class Component Lifecycle Methods
+
+- `componentDidMount`
+- `componentWillUnmount`
+- `componentDidUpdate`
+
+#### Hooks Lifecycle
+
+- `useEffect`
+
+^ Another important feature of Hooks is allowing function components to have access to lifecycle hooks. Class components can register functions to serve many cases.
+
+^ Hooks provides the `useEffect` API. This function runs when the component is first rendered, and on every subsequent re-render/update. React first updates the DOM, then calls any function passed to `useEffect`.
+
+^ [1] Flavio Copes _The React Handbook_ pg. 179
+
+---
+
+## Hooks `useState` and `useEffect` Examples
+
+---
+
+## Using Component Based State
+
+---
+
 ### Accessing States
 
 ```javascript

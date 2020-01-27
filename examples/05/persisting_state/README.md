@@ -106,27 +106,26 @@ import signs from '../js/signs.js';
 Create `./src/components/Inventory.js` Inventory component. This component will use another component (_EditSignForm_), which will create an instance of a form for each sign in our data that will allow us to update the information associated with each sign.
 
 ```javascript
-import React, { Component } from 'react';
+import React from 'react';
 import EditSignForm from './EditSignForm';
 
-class Inventory extends Component {
-  render() {
-    return (
-      <div className="inventory">
-        <h2>Signs Inventory</h2>
-        {Object.keys(this.props.signs).map(key => (
-          <EditSignForm
-            key={key}
-            index={key}
-            sign={this.props.signs[key]}
-            updateSign={this.props.updateSign}
-            deleteSign={this.props.deleteSign}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+const Inventory = props => {
+  const { signs, deleteSign, updateSign } = props;
+  return (
+    <div className="inventory">
+      <h2>Signs Inventory</h2>
+      {Object.keys(signs).map(key => (
+        <EditSignForm
+          key={key}
+          index={key}
+          sign={signs[key]}
+          updateSign={updateSign}
+          deleteSign={deleteSign}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default Inventory;
 ```
@@ -134,16 +133,14 @@ export default Inventory;
 Next, create `./src/components/EditSignForm.js` the _EditSignForm_ component base.
 
 ```javascript
-import React, { Component } from 'react';
-
-class EditSignForm extends Component {
-  render() {
-    return (
-      <div className="sign-edit">
-        <p>Edit signs here</p>
-      </div>
-    );
-  }
+import React from 'react';
+const EditSignForm = props => {
+  const { index, sign } = props;
+  return (
+    <div className="sign-edit">
+      <p>Edit signs here</p>
+    </div>
+  );
 }
 
 export default EditSignForm;
@@ -168,52 +165,44 @@ return (
 You'll notice now we get an error because we provided a _value_ in our input. The error explains we must also provide an _onChange_ handler that takes care of what happens when the value of the input changes. Let's do that next.
 
 ```diff
-class EditSignForm extends Component {
+const EditSignForm = props => {
+  const { index, sign } = props;
+
 + handleChange = event => {
 +   console.log(event);
 + };
-
-  render() {
-    return (
-      <div className="sign-edit">
-        <label htmlFor="name">Name: </label>
--       <input type="text" name="name" value={this.props.sign.name} />
-+       <input
-+         type="text"
-+         name="name"
-+         value={this.props.sign.name}
-+         onChange={this.handleChange}
-+       />
-      </div>
-    );
-  }
 }
 ```
 
 Add remaining form inputs:
 
 ```javascript
-<div className="controlgroup">
-  <label htmlFor="status">Status</label>
-  <select
-    name="status"
-    onChange={this.handleChange}
-    value={this.props.sign.status}
-  >
-    <option value="active">Active</option>
-    <option value="inactive">Inactive</option>
-  </select>
-</div>
-<div className="controlgroup">
-  <textarea
-    name="desc"
-    onChange={this.handleChange}
-    value={this.props.sign.desc}
-  />
+<div className="sign-edit">
+  <div className="controlgroup">
+    <label htmlFor="name">Name:</label>
+    <input
+      name="name"
+      type="text"
+      value={sign.name}
+      onChange={handleChange}
+    />
+  </div>
+  <div className="controlgroup">
+    <label htmlFor="status">Status</label>
+    <select name="status" onChange={handleChange} value={sign.status}>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+  </div>
+  <div className="cotnrolgroup">
+    <textarea name="desc" onChange={handleChange} value={sign.desc} />
+  </div>
 </div>
 ```
 
 ### Refactor Variable Names
+
+**SKIP THIS** - move on to next section
 
 ```diff
 render() {
@@ -293,7 +282,7 @@ handleChange = event => {
 
   // Take a copy of the current fish
 + const updatedSign = {
-+   ...this.props.sign
++   ...sign
 + };
 };
 ```
@@ -307,8 +296,8 @@ handleChange = event => {
 + const value = event.currentTarget.value;
 
   const updateSign = {
--   ...this.props.sign
-+   ...this.props.sign,
+-   ...sign
++   ...sign,
     // ES6 dynamically get the 'name' attribute of the
     // input element that is being updated.
     // [event.currentTarget.name]
@@ -333,18 +322,21 @@ handleChange = event => {
   console.log(event.currentTarget.value);
   console.log(event.currentTarget.name);
 
+  const name = event.currentTarget.name;
+  const value = event.currentTarget.value;
+
   // Take a copy of the current fish
   const updatedSign = {
-    ...this.props.sign,
+    ...sign,
     // ES6 dynamically get the 'name' attribute of the
     // input element that is being updated.
     // [event.currentTarget.name]
     // Then set the value to whatever is entered in that input:
-    [event.currentTarget.name]: event.currentTarget.value
+    [name]: value
   };
 
   console.log(updatedSign);
-+ this.props.updateSign(this.props.index, updatedSign);
++ props.updateSign(index, updateSign);
 };
 ```
 
@@ -375,13 +367,14 @@ Let's update `./src/components/Sign.js` our Sign component to use the _status_ p
 ```diff
 class Sign extends Component {
   render() {
--   const { image, name, desc } = this.props.details;
-+   const { image, name, desc, status } = this.props.details;
+-   const { image, key, name, desc } = props.details;
++   const { image, key, name, desc, status } = props.details;
     return (
--     <li key="this.props.key">
-+     <li key="this.props.key" className={status}>
+-     <li key={key}>
++     <li key={key} className={status}>
         <img src={image} alt={name} />
         <h2>{name}</h2>
+        <p>{desc}</p>
 ```
 
 We already have a style in our stylesheet that handles a small opacity change for inactive items.

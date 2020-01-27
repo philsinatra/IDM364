@@ -1,23 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Button extends Component {
-  state = {
-    message: ''
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <button
-          onClick={() => {
-            this.props.loadSigns();
-          }}
-        >
-          Load Signs
-        </button>
-      </React.Fragment>
-    );
-  }
-}
+const Button = props => (
+  <button
+    onClick={() => {
+      props.loadSigns();
+    }}
+  >
+    Load Signs
+  </button>
+);
 
 export default Button;

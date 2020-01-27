@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Button extends Component {
-  render() {
-    return <button onClick={this.props.updateState}>{this.props.label}</button>;
-  }
-}
+const Button = props => {
+  const { label, updateState } = props;
+  return <button onClick={updateState}>{label}</button>;
+};
 
 Button.propTypes = {
   label: PropTypes.string.isRequired,

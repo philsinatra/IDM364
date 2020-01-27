@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Button from './Button';
 import Header from './Header';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 const theme = {
   red: '#ff0000',
@@ -53,27 +53,23 @@ const Inner = styled.div`
   box-shadow: ${props => props.theme.bs};
 `;
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <StyledPage className="App">
-            <Inner>
-              <Header />
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Reiciendis esse exercitationem aperiam voluptatum libero earum
-                dolorem officia cumque rem recusandae!
-              </p>
-              <Button />
-            </Inner>
-          </StyledPage>
-        </ThemeProvider>
-      </>
-    );
-  }
-}
+const App = () => (
+  <>
+    <GlobalStyle />
+    <ThemeProvider theme={theme}>
+      <StyledPage className="App">
+        <Inner>
+          <Header />
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis
+            esse exercitationem aperiam voluptatum libero earum dolorem officia
+            cumque rem recusandae!
+          </p>
+          <Button />
+        </Inner>
+      </StyledPage>
+    </ThemeProvider>
+  </>
+);
 
 export default App;

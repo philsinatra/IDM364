@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import EditSignForm from './EditSignForm';
 
-class Inventory extends Component {
-  render() {
-    return (
-      <div className="inventory">
-        <h2>Signs Inventory</h2>
-        {Object.keys(this.props.signs).map(key => (
-          <EditSignForm
-            key={key}
-            index={key}
-            sign={this.props.signs[key]}
-            updateSign={this.props.updateSign}
-            deleteSign={this.props.deleteSign}
-          />
-        ))}
-      </div>
-    );
-  }
-}
+const Inventory = props => {
+  const { signs, deleteSign, updateSign } = props;
+  return (
+    <div className="inventory">
+      <h2>Signs Inventory</h2>
+      {Object.keys(signs).map(key => (
+        <EditSignForm
+          key={key}
+          index={key}
+          sign={signs[key]}
+          updateSign={updateSign}
+          deleteSign={deleteSign}
+        />
+      ))}
+    </div>
+  );
+};
 
 export default Inventory;
