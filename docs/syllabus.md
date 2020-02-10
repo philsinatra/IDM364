@@ -20,15 +20,15 @@ By the end of the course, student will be able to
 
 | Week | Topics |
 | ---- | ------ |
-| Week 1 | Introduction |
-| Week 2 | Basic Usage & Introduction to JSX |
-| Week 3 | State |
-| Week 4 | Routing and Handling Events |
+| Week 1 | Introduction, Basic Usage & JSX |
+| Week 2 | State |
+| Week 3 | Handling Events & Routing |
+| Week 4 | Alpha Review |
 | Week 5 | Persisting State |
-| Week 6 | Proptypes |
+| Week 6 | Styled Components & PropTypes |
 | Week 7 | Building, Deploying & Ejecting |
-| Week 8 | Styled Components |
-| Week 9 | Hooks |
+| Week 8 | Beta Review |
+| Week 9 | Open Lab |
 | Week 10 | Open Lab |
 
 ## Required Materials
@@ -38,13 +38,15 @@ By the end of the course, student will be able to
 
 ## Grading
 
-| Class Portion | Total Grade Percentage |
-| ------------- | ---------------------- |
-| Class Participation, Final Project | 100 |
+| Aspect | Point Value |
+| ------ | ----------: |
+| Alpha | 30 |
+| Beta | 30 |
+| Final Project | 40 |
 
 ## Final Project
 
-- [Final Project](final-project.md)
+- [Final Project](assignment-final.md)
 
 ## Homework Submissions
 
