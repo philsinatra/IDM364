@@ -2,7 +2,7 @@ build-lists: true
 slidenumbers: true
 footer: IDM 364: Introduction to React
 autoscale: true
-theme: Dark Mode
+theme: Work, 1
 
 # Forecast Exercise
 

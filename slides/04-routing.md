@@ -2,9 +2,9 @@ build-lists: true
 slidenumbers: true
 footer: IDM 364: Introduction to React
 autoscale: true
-theme: Dark Mode
+theme: Work, 1
 
-![fit](https://reactjs.org/logo-og.png)
+![fill](https://reactjs.org/logo-og.png)
 
 ---
 
